@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("hey there its Ayush this side")
+	fmt.Println("hey there, its Ayush this side")
 }
 
 // LEXAR: job of lexar is to correct our grammar in code
