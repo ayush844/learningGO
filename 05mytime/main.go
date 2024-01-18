@@ -37,7 +37,9 @@ func main() {
 
 }
 
-//******************************* GO BUILD ********************************
+//************************************************************************************************
+//******************************* GO BUILD *******************************************************
+//************************************************************************************************
 
 //ayush@lucas:~/Desktop/goWithGolang/05mytime$ go env
 
@@ -94,3 +96,28 @@ func main() {
 //both of the code above generates an executrable file
 
 //************************************************************************************************
+
+//*********************************************************************************************************
+//******************************* MEMORY MANAGEMENT *******************************************************
+//*********************************************************************************************************
+
+// > memory allocation and deallocation happens automatically in GOLANG
+
+// ~ new():
+// > allocates memory but does not initialize it
+// > you will get a memory address
+// > zeroed storage (we can not put data initially)
+
+// ~ make():
+// > allocates memory and also initialize it
+// > you will get a memory address
+// > non-zeroed storage (we can put data initially)
+
+// garbage collection(GC) happens automatically, anything which is out of scope or is nil becomes eligible for garbage collection
+
+//The GOGC variable sets the initial garbage collection target percentage. A collection is triggered when the ratio of freshly allocated data to live data remaining after the previous collection reaches this percentage. The default is GOGC=100. Setting GOGC=off disables the garbage collector entirely.
+
+//func NumCPU
+//func NumCPU() int
+//NumCPU returns the number of logical CPUs usable by the current process.
+//The set of available CPUs is checked by querying the operating system at process startup. Changes to operating system CPU allocation after process startup are not reflected.
