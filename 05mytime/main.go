@@ -36,3 +36,54 @@ func main() {
 	// 08-04-2004 Thursday 23:30:00
 
 }
+
+//******************************* GO BUILD ********************************
+
+//ayush@lucas:~/Desktop/goWithGolang/05mytime$ go env
+
+// GO111MODULE=''
+// GOARCH='amd64'
+// GOBIN=''
+// GOCACHE='/home/ayush/.cache/go-build'
+// GOENV='/home/ayush/.config/go/env'
+// GOEXE=''
+// GOEXPERIMENT=''
+// GOFLAGS=''
+// GOHOSTARCH='amd64'
+// GOHOSTOS='linux'
+// GOINSECURE=''
+// GOMODCACHE='/home/ayush/go/pkg/mod'
+// GONOPROXY=''
+// GONOSUMDB=''
+//**********************************
+// GOOS='linux'
+//**********************************
+// GOPATH='/home/ayush/go'
+// GOPRIVATE=''
+// GOPROXY='https://proxy.golang.org,direct'
+// GOROOT='/snap/go/10489'
+// GOSUMDB='sum.golang.org'
+// GOTMPDIR=''
+// GOTOOLCHAIN='auto'
+// GOTOOLDIR='/snap/go/10489/pkg/tool/linux_amd64'
+// GOVCS=''
+// GOVERSION='go1.21.6'
+// GCCGO='gccgo'
+// GOAMD64='v1'
+// AR='ar'
+// CC='gcc'
+// CXX='g++'
+// CGO_ENABLED='1'
+// GOMOD='/home/ayush/Desktop/goWithGolang/05mytime/go.mod'
+// GOWORK=''
+// CGO_CFLAGS='-O2 -g'
+// CGO_CPPFLAGS=''
+// CGO_CXXFLAGS='-O2 -g'
+// CGO_FFLAGS='-O2 -g'
+// CGO_LDFLAGS='-O2 -g'
+// PKG_CONFIG='pkg-config'
+// GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build3225025562=/tmp/go-build -gno-record-gcc-switches'
+
+// ayush@lucas:~/Desktop/goWithGolang/05mytime$ GOOS="windows" go build
+
+// ayush@lucas:~/Desktop/goWithGolang/05mytime$ GOOS="darwin" go build
