@@ -84,6 +84,13 @@ func main() {
 // PKG_CONFIG='pkg-config'
 // GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build3225025562=/tmp/go-build -gno-record-gcc-switches'
 
+//************************************************************************************************
 // ayush@lucas:~/Desktop/goWithGolang/05mytime$ GOOS="windows" go build
+// Compiles a Go program specifically for the Windows operating system, even if you're currently running on a different OS like Linux or macOS.
 
 // ayush@lucas:~/Desktop/goWithGolang/05mytime$ GOOS="darwin" go build
+//Compiles a Go program specifically for Apple macOS (formerly known as Darwin), even if you're not currently on a macOS machine.
+
+//both of the code above generates an executrable file
+
+//************************************************************************************************
