@@ -59,4 +59,15 @@ func main() {
 	fmt.Println(sort.IntsAreSorted(highScore)) //it tells if our slice is sorted or not
 	// true
 
+	// How to remove a value from slice based on index in golang
+	var courses = []string{"reactjs", "javascript", "swift", "python", "ruby"}
+	fmt.Println(courses)
+	// [reactjs javascript swift python ruby]
+
+	var index = 2 // we have to remove the index 2 from courses
+
+	courses = append(courses[:index], courses[index+1:]...)
+	fmt.Println(courses)
+	// [reactjs javascript python ruby]
+
 }
