@@ -22,9 +22,12 @@ func main() {
 //*********************************** MAKING THE STRUCTURE ***********************************
 
 // here the name of our structure and also the name of the elements inside it are starting with the capital letter because they can can be accessed from anywhere in this file so they are public
+
 type User struct {
 	Name   string
 	Email  string
 	Status bool
 	Age    int
 }
+
+// here if we define a variable inside struct starting with lower case then it can not be exported i.e. it will no longer be public
