@@ -10,18 +10,26 @@ func main() {
 	var username string = "ayush"
 	fmt.Println(username)
 	fmt.Printf("variable is of type: %T \n", username)
+	//ayush
+	//variable is of type: string
 
 	var isLoggedIn bool = true
 	fmt.Println(isLoggedIn)
 	fmt.Printf("variable is of type: %T \n", isLoggedIn)
+	//true
+	//variable is of type: bool
 
 	var smallValue uint = 255
 	fmt.Println(smallValue)
 	fmt.Printf("variable is of type: %T \n", smallValue)
+	//255
+	//variable is of type: uint
 
 	var smallFloat float32 = 255.435367855775434577789764
 	fmt.Println(smallFloat)
 	fmt.Printf("variable is of type: %T \n", smallFloat)
+	//255.43536
+	//variable is of type: float32
 
 	//default variable and some aliases
 
@@ -45,8 +53,12 @@ func main() {
 	numberOfUser := 300000
 	fmt.Println(numberOfUser)
 	fmt.Printf("variable is of type: %T \n", numberOfUser)
+	//300000
+	//variable is of type: int
 
 	fmt.Println(LoginToken)
 	fmt.Printf("variable is of type: %T \n", LoginToken)
+	//abcd
+	//variable is of type: string
 
 }

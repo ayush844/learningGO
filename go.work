@@ -1,0 +1,21 @@
+go 1.21.6
+
+use (
+	./01hello
+	./02variables
+	./03userinput
+	./04conversion
+	./05mytime
+	./06pointers
+	./07arrays
+	./08slices
+	./09mapping
+	./10structs
+	./11ifelse
+	./12switchCase
+	./13loops
+	./14functions
+	./15methods
+	./16defer
+	./17files
+)

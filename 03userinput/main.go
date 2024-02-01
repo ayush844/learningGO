@@ -23,8 +23,10 @@ func main() {
 
 	// _, err := reader.ReadString('\n')
 
-	fmt.Println("Thanks for rating, ", input)
+	fmt.Println("Thanks for rating, ", input) // Thanks for rating,  3
 
-	fmt.Printf("type of rating is: %T \n", input)
+	//every input is taken as strings
+
+	fmt.Printf("type of rating is: %T \n", input) // type of rating is: string
 
 }

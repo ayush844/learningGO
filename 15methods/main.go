@@ -7,10 +7,14 @@ func main() {
 
 	ayush := User{"ayush", "ayush@gmail.com", true, 20}
 	fmt.Println("the person is as foolows:", ayush)
+	//the person is as foolows: {ayush ayush@gmail.com true 20}
 
 	fmt.Printf("the person is as follows: %+v\n", ayush)
+	//the person is as follows: {Name:ayush Email:ayush@gmail.com Status:true Age:20}
+
 
 	fmt.Printf("the name of the person is %v and his age is %v\n", ayush.Name, ayush.Age)
+	//the name of the person is ayush and his age is 20
 
 	ayush.GetStatus()
 	// Is user active:  true
