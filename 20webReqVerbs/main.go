@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -14,9 +14,13 @@ func main()  {
 
 	// performGetRequest()
 
-	performPostJsonRequests()
+	// performPostJsonRequests()
+
+	performPostFormRequest()
 }
 
+
+// making a get requests
 func performGetRequest()  {
 	const myUrl = "http://localhost:8000/get"
 	response, err := http.Get(myUrl)
@@ -51,10 +55,10 @@ func performGetRequest()  {
 	fmt.Println(responceString.String())
 	// {"message":"Hello from learnCodeonline.in"}
 
-
 }
 
 
+// making a post requests
 func performPostJsonRequests()  {
 	const myUrl = "http://localhost:8000/post"
 
@@ -75,10 +79,37 @@ func performPostJsonRequests()  {
 
 	defer response.Body.Close()
 
-	content, _ := ioutil.ReadAll(response.Body)
+	content, _ := io.ReadAll(response.Body)
 
 	fmt.Println(string(content))
 
 	// {"coursename":"Lets go with golang","price":0,"platform":"lco.in"}
+
+}
+
+
+func performPostFormRequest()  {
+	const myUrl = "http://localhost:8000/postform"
+
+	//formdata
+
+	data := url.Values{}
+	data.Add("firstName", "Ayush")
+	data.Add("lastname","Sharma")
+	data.Add("email", "ayush.xyz1625@gmail.com")
+
+	response, err := http.PostForm(myUrl, data)
+	
+	if err != nil {
+		panic(err)
+	}
+
+	defer response.Body.Close()
+
+	content, _ := io.ReadAll(response.Body)
+	fmt.Println(string(content))
+	// {"email":"ayush.xyz1625@gmail.com","firstName":"Ayush","lastname":"Sharma"}
+
+
 
 }
