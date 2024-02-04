@@ -144,7 +144,7 @@ func DecodeJson()  {
 	if checkValid {
 		fmt.Println("JSON was valid")
 		json.Unmarshal(jsonDataFromWeb, &lcoCourse)
-		fmt.Printf("%#v\n", lcoCourse)
+		fmt.Printf("%#v\n", lcoCourse) //here #v will be used
 	}else{
 		fmt.Println("JSON was not valid")
 	}
