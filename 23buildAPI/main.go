@@ -3,7 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"net/http"
+	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -28,7 +31,8 @@ var courses []Course
 //middleware or helper methods
 
 func (c *Course) isEmpty() bool {
-	return c.CourseId=="" && c.CourseName=="" 	//ensures that both fields don't stay empty
+	// return c.CourseId=="" && c.CourseName=="" 	//ensures that both fields don't stay empty
+	return c.CourseName=="" 
 }
 
 
@@ -74,5 +78,52 @@ func getOneCourse(w http.ResponseWriter, r *http.Request){
 	json.NewEncoder(w).Encode("no course found of the given id")
 
 	return
+
+}
+
+
+//create a new course
+func createOneCourse(w http.ResponseWriter, r *http.Request)  {
+
+	fmt.Println("Create one course")
+	w.Header().Set("Content-Type", "application/json")
+
+	// what if - body is empty
+	if r.Body == nil {
+		json.NewEncoder(w).Encode("Please send some data")
+	}
+
+	// what about - {}
+
+	var course Course
+	_ = json.NewDecoder(r.Body).Decode(&course)
+
+	if course.isEmpty() {
+		json.NewEncoder(w).Encode("no data inside JSON")
+		return
+	}
+
+
+	// generate unique id, string
+	// append course into courses
+
+
+	seed := time.Now().Unix() // Or any other seed value
+	source := rand.NewSource(seed)
+	rng := rand.New(source)
+
+// Generate random numbers using rng
+	randomNumber := rng.Intn(100) // Generate a random number using the current Unix timestamp in nanoseconds
+
+	course.CourseId = strconv.Itoa(randomNumber)
+
+
+	courses = append(courses, course)
+
+	json.NewEncoder(w).Encode(course)
+
+	return
+
+
 
 }
