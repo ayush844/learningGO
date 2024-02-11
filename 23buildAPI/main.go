@@ -11,7 +11,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-//model for course - file
+//model for course - new file
 type Course struct{
 	CourseId string `json:"courseid"`
 	CourseName string `json:"coursename"`
@@ -41,7 +41,7 @@ func main()  {
 }
 
 
-// controllers - file
+// controllers - new file
 
 
 //serve home route
@@ -93,11 +93,12 @@ func createOneCourse(w http.ResponseWriter, r *http.Request)  {
 		json.NewEncoder(w).Encode("Please send some data")
 	}
 
-	// what about - {}
+	
 
 	var course Course
 	_ = json.NewDecoder(r.Body).Decode(&course)
 
+	// what about - {}
 	if course.isEmpty() {
 		json.NewEncoder(w).Encode("no data inside JSON")
 		return
@@ -107,7 +108,6 @@ func createOneCourse(w http.ResponseWriter, r *http.Request)  {
 	// generate unique id, string
 	// append course into courses
 
-
 	seed := time.Now().Unix() // Or any other seed value
 	source := rand.NewSource(seed)
 	rng := rand.New(source)
@@ -115,7 +115,7 @@ func createOneCourse(w http.ResponseWriter, r *http.Request)  {
 // Generate random numbers using rng
 	randomNumber := rng.Intn(100) // Generate a random number using the current Unix timestamp in nanoseconds
 
-	course.CourseId = strconv.Itoa(randomNumber)
+	course.CourseId = strconv.Itoa(randomNumber)// to convertr randomNumber to string to put in courseId
 
 
 	courses = append(courses, course)
@@ -123,6 +123,41 @@ func createOneCourse(w http.ResponseWriter, r *http.Request)  {
 	json.NewEncoder(w).Encode(course)
 
 	return
+}
+
+
+func updateOneCourse(w http.ResponseWriter, r *http.Request){
+	fmt.Println("update a course");
+	w.Header().Set("Content-Type", "application/json");
+
+	// grab id from request
+	params := mux.Vars(r);
+
+	// loop in the slice, get the id, remove that course from the the slices and then add with my id(params)
+
+	
+
+	for index, course := range courses{
+		if course.CourseId == params["id"] {
+
+			courses = append(courses[:index], courses[index+1:]... );
+
+			var newCourse Course
+			_ = json.NewDecoder(r.Body).Decode(&newCourse)
+
+			newCourse.CourseId = params["id"]
+
+			courses = append(courses, newCourse)
+
+			json.NewEncoder(w).Encode(newCourse)
+			
+			return
+		}
+	}
+
+	//response if id is not found
+
+	json.NewEncoder(w).Encode("id not found")
 
 
 
