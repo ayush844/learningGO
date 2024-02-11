@@ -162,3 +162,27 @@ func updateOneCourse(w http.ResponseWriter, r *http.Request){
 
 
 }
+
+
+
+func deleteOneCourse(w http.ResponseWriter, r *http.Request){
+	fmt.Println("delete a course");
+	w.Header().Set("Content-Type", "application/json");
+
+	// grab id from request
+	params := mux.Vars(r);
+
+	for index, course := range courses{
+		if course.CourseId == params["id"] {
+			courses = append(courses[:index], courses[index+1:]... );
+
+			json.NewEncoder(w).Encode(courses)
+			return
+		}
+
+
+	}
+
+	json.NewEncoder(w).Encode("id not found")
+
+}
