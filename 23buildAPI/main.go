@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -37,7 +38,30 @@ func (c *Course) isEmpty() bool {
 
 
 func main()  {
+
+	fmt.Println("API - LearnCodeOnline.in")
+	r := mux.NewRouter();
+
+
+	//seeding
+
+	courses = append(courses, Course{CourseId: "2", CourseName: "ReactJS", CoursePrice: 399, Author: &Author{Fullname: "Ayush Sharma", Website: "lco.dev"}})
+
+	courses = append(courses, Course{CourseId: "4", CourseName: "NodeJS", CoursePrice: 499, Author: &Author{Fullname: "Ayush Sharma", Website: "lco.dev"}})
 	
+
+	// routing
+	r.HandleFunc("/", serveHome).Methods("GET");
+	r.HandleFunc("/courses", getAllCourses).Methods("GET");
+	r.HandleFunc("/course/{id}", getOneCourse).Methods("GET");
+	r.HandleFunc("/course", createOneCourse).Methods("POST");
+	r.HandleFunc("/course/{id}", updateOneCourse).Methods("PUT");
+	r.HandleFunc("/course/{id}", deleteOneCourse).Methods("DELETE");
+
+
+	//listen to a port
+	log.Fatal(http.ListenAndServe(":2000", r));
+
 }
 
 
@@ -55,7 +79,6 @@ func getAllCourses(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(courses)
 }
-
 
 // get a particular course
 func getOneCourse(w http.ResponseWriter, r *http.Request){
@@ -77,7 +100,6 @@ func getOneCourse(w http.ResponseWriter, r *http.Request){
 
 	json.NewEncoder(w).Encode("no course found of the given id")
 
-	return
 
 }
 
@@ -86,21 +108,19 @@ func getOneCourse(w http.ResponseWriter, r *http.Request){
 func createOneCourse(w http.ResponseWriter, r *http.Request)  {
 
 	fmt.Println("Create one course")
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "applicatioan/json")
 
-	// what if - body is empty
+	// what if: body is empty
 	if r.Body == nil {
 		json.NewEncoder(w).Encode("Please send some data")
 	}
 
-	
+	// what about - {}
 
 	var course Course
 	_ = json.NewDecoder(r.Body).Decode(&course)
-
-	// what about - {}
 	if course.isEmpty() {
-		json.NewEncoder(w).Encode("no data inside JSON")
+		json.NewEncoder(w).Encode("No data inside JSON")
 		return
 	}
 
@@ -122,7 +142,6 @@ func createOneCourse(w http.ResponseWriter, r *http.Request)  {
 
 	json.NewEncoder(w).Encode(course)
 
-	return
 }
 
 
