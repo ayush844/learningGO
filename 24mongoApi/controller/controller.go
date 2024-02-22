@@ -6,6 +6,8 @@ import (
 	"log"
 
 	"github.com/ayush844/mongoapi/model"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -65,3 +67,20 @@ func insertOneMovie(movie model.Netflix)  { //here model in model.Netflix is pac
 
 }
 
+// update 1 movie
+
+func updateOneMovie(movieId string){
+	id, _ := primitive.ObjectIDFromHex(movieId)
+	filter := bson.M{"_id": id}
+
+	update := bson.M{"$set": bson.M{"watched": true}}
+
+	result, err := collection.UpdateOne(context.Background(), filter, update)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("modified count: ", result.ModifiedCount)
+
+}
